@@ -1,0 +1,5 @@
+argparse==1.2.1
+ipython==2.4.1
+python-decouple==2.3
+selenium==2.44.0
+wsgiref==0.1.2
