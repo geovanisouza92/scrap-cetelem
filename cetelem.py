@@ -49,6 +49,12 @@ def main():
     subtotal = driver.find_element_by_xpath(
         "//div[@id='boxFatura']/table/tbody/tr[2]/td").text
 
+    # Extrair próxima fatura
+    driver.find_element_by_xpath(
+        "//div[@id='abasFatura']/table/tbody/tr/td[3]/a").click()
+    proxima_fatura = driver.find_element_by_xpath(
+        "//div[@id='boxFatura']/table/tbody/tr[3]/td").text
+
     # Fechar navegador
     driver.quit()
 
@@ -56,6 +62,7 @@ def main():
     print('Limite:', limite)
     print('Super Limite:', super_limite)
     print('Fatura de', mes, subtotal)
+    print('Próxima fatura:', proxima_fatura)
 
 
 if __name__ == "__main__":
