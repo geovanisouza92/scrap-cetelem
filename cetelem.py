@@ -23,10 +23,7 @@ def main():
     driver.implicitly_wait(30)
 
     # Abrir portal Cetelem
-    driver.get('http://www.cetelem.com.br/portal/Para_Voce/index.shtml')
-
-    # Clicar em Acessar
-    driver.find_element_by_link_text('Acessar').click()
+    driver.get('http://www.cetelem.com.br/wps/portal/cetelem/normal/NL/login')
 
     # Digitar usuário e senha
     driver.find_element_by_id('userid').clear()
