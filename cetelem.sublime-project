@@ -1,9 +1,15 @@
 {
-	"folders":
-	[
-		{
-			"follow_symlinks": true,
-			"path": "."
-		}
-	]
+    "folders": [
+        {
+            "follow_symlinks": true,
+            "path": "."
+        }
+    ],
+    "settings": {
+        "pylinter": {
+            "disable": [
+                "I0011"
+            ]
+        }
+    }
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# pylint: disable=F0401
+# pylint: disable=F0401,C0111
 
 
 from __future__ import print_function
@@ -13,11 +13,12 @@ from selenium.webdriver import Firefox
 USER = config('CETELEM_USER')
 PASSWORD = config('CETELEM_PASSWORD')
 
-_limite = r'.*compra:\n(?P<limite>R\$[^\n]*)\n'
-_super_limite = r'.*Super Limite:\n(?P<super_limite>R\$[^\n]*)\n'
+_LIMITE = r'.*compra:\n(?P<limite>R\$[^\n]*)\n'
+_SUPER_LIMITE = r'.*Super Limite:\n(?P<super_limite>R\$[^\n]*)\n'
 
 
 def main():
+    """Buscar informações de limites disponíveis e total das faturas"""
     driver = Firefox()
     driver.implicitly_wait(30)
 
@@ -31,16 +32,16 @@ def main():
     driver.find_element_by_id('userid').clear()
     driver.find_element_by_id('userid').send_keys(USER)
 
-    for it in list(PASSWORD):
-        driver.find_element_by_name(it).click()
+    for digit in list(PASSWORD):
+        driver.find_element_by_name(digit).click()
 
     # Clicar em acessar
     driver.find_element_by_id('acessarps').click()
 
     # Extrair limites
     dados = driver.find_element_by_id('dadosCartaoInternetBanking').text
-    limite = search(_limite, dados).group(1)
-    super_limite = search(_super_limite, dados).group(1)
+    limite = search(_LIMITE, dados).group(1)
+    super_limite = search(_SUPER_LIMITE, dados).group(1)
 
     # Extrair fatura
     driver.find_element_by_link_text('Consulte sua fatura').click()
